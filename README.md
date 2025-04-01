@@ -5,7 +5,6 @@
       <img src="./readme/typescript.svg" alt="" />
       <img src="./readme/tailwind.svg" alt="" />
       <img src="./readme/mongodb.svg" alt="" />
-      <img width="80" src="https://www.freelogovectors.net/svg11/prismalogo-freelogovectors.net.svg" alt="" />
     </div>
     <p>
     <p style="font-size: 14px; text-align: center; margin-top: 15px; margin-bottom:4px;">
