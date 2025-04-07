@@ -1,6 +1,6 @@
-import DesktopSidebar from "@/components/desktopSidebar";
-import MobileFooter from "@/components/mobileFooter";
-import {getCurrentUser} from "@/app/action";
+import DesktopSidebar from "@/components/sidebar/desktopSidebar";
+import MobileFooter from "@/components/sidebar/mobileFooter";
+import {getCurrentUser} from "@/app/actions";
 
 interface Props {
 children: React.ReactNode;
