@@ -3,7 +3,7 @@
 import React from 'react';
 import useRoutes from "@/hooks/useRoutes";
 import useConversation from "@/hooks/useConversation";
-import MobileFooterItem from "@/components/mobileFooterItem";
+import MobileFooterItem from "@/components/sidebar/mobileFooterItem";
 
 const MobileFooter: React.FC = () => {
     const routes = useRoutes()

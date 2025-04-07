@@ -9,9 +9,10 @@ type Props = {
     fullWidth?: boolean,
     secondary?: boolean,
     danger?: boolean
+    className?: string,
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-const Button: React.FC<Props> = ({children, onClick, fullWidth,danger, secondary, ...rest}) => {
+const Button: React.FC<Props> = ({children,className, onClick, fullWidth,danger, secondary, ...rest}) => {
     const {disabled} = rest
     return (
         <button onClick={onClick} {...rest} className={clsx("flex justify-center rounded-md px-3 p-2 cursor-pointer text-sm font-semibold focus-visible:outline focus-visible:outline-offset-2",
@@ -19,7 +20,8 @@ const Button: React.FC<Props> = ({children, onClick, fullWidth,danger, secondary
             fullWidth && "w-full",
             secondary ? "text-gray-900": "text-white",
             danger && "opacity-100",
-            !secondary && !danger && "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600"
+            !secondary && !danger && "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600",
+            className && className
         )}>
             {children}
         </button>
