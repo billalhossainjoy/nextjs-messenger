@@ -3,9 +3,11 @@
 import React, {useState} from 'react';
 import Input from "@/components/input";
 import Button from "@/components/button";
-import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
+import { SubmitHandler, useForm} from "react-hook-form";
 import {loginSchema, LoginSchemaType} from "@/schema/auth.schema";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {signIn} from "next-auth/react"
+import toast from "react-hot-toast";
 
 const LoginForm: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -20,7 +22,18 @@ const LoginForm: React.FC = () => {
 
     const onSubmit: SubmitHandler<LoginSchemaType> = (data) => {
         setIsLoading(true)
+        signIn('credentials', {
+            ...data,
+            redirect: false
+        }).then((cb) => {
+            if(cb?.error) {
+                toast.error(cb?.error ?? "Invalid credentials..")
+            }
 
+            if(cb?.ok) {
+                toast.success("Login successfully")
+            }
+        }).finally(() => setIsLoading(false))
     }
 
 
