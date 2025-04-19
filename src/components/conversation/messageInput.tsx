@@ -5,8 +5,7 @@ import useConversation from "@/hooks/useConversation";
 import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import axios from "axios";
 import {HiPaperAirplane, HiPhoto} from "react-icons/hi2";
-import Input from "@/components/input";
-import Button from "@/components/button";
+import {CldUploadButton, type CloudinaryUploadWidgetResults} from "next-cloudinary";
 
 const MessageInput: React.FC = () => {
     const {conversationId} = useConversation()
@@ -25,9 +24,18 @@ const MessageInput: React.FC = () => {
         })
     }
 
+    const handleUpload = (result: any) => {
+        axios.post("/api/messages",{
+            image: result?.info?.secure_url,
+            conversationId
+        })
+    }
+
     return (
         <div className={"p-4 bg-white border-t border-gray-200 flex items-center gap-2 lg:gap-4 w-full"}>
-            <HiPhoto  size={30} className={"text-sky-500"}/>
+            <CldUploadButton options={{maxFiles:1}} onSuccess={handleUpload} uploadPreset="nextjs-messenger">
+                <HiPhoto size={30} className={"text-sky-500"}/>
+            </CldUploadButton>
             <div className={"relative w-full"}>
                 <form onSubmit={handleSubmit(onSubmit)} autoComplete={"off"} className={"flex w-full items-center gap-2 lg:gap-4"}>
                     <input id={"message"} type={"text"} {...register("message")}

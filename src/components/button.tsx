@@ -19,7 +19,7 @@ const Button: React.FC<Props> = ({children,className, onClick, fullWidth,danger,
             disabled && "opacity-50 cursor-default",
             fullWidth && "w-full",
             secondary ? "text-gray-900": "text-white",
-            danger && "opacity-100",
+            danger && "opacity-100 bg-red-500 hover:bg-red-600 focus-visible:outline-red-600",
             !secondary && !danger && "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600",
             className && className
         )}>

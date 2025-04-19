@@ -8,7 +8,9 @@ interface Params {
     conversationId: string;
 }
 
-const Page = async ({params: {conversationId}}: {params: Params}) => {
+const Page = async ({params}: {params: Params}) => {
+    const {conversationId} =await params
+
     const conversation = await getConversationById(conversationId)
     const messages = await getMessages(conversationId)
     if(!conversation) {
@@ -19,14 +21,11 @@ const Page = async ({params: {conversationId}}: {params: Params}) => {
         </div>
     }
 
-
-
-
     return (
         <div className={"lg:pl-80 h-full "}>
            <div className={"h-full flex flex-col"}>
                <Header conversation={conversation}/>
-               <ConversationBody />
+               <ConversationBody initialMessages={messages}/>
                <MessageInput />
            </div>
         </div>
