@@ -8,6 +8,7 @@ import {useSession} from "next-auth/react";
 import {cn} from "@/lib/utils";
 import Avatar from "@/components/avatar";
 import {format} from "date-fns";
+import AvatarGroup from "@/components/avatarGroup";
 
 type Props = {
     data:FullConversationType;
@@ -73,8 +74,9 @@ const ConversationBox: React.FC<Props> = ({data, selected}) => {
         `,
             selected ? "bg-neutral-100": "bg-white",
             )}>
-
-            <Avatar user={otherUser} />
+            {data.isGroup ? (
+                <AvatarGroup users={data.users}/>
+            ): (<Avatar user={otherUser} />)}
             <div className={"min-w-0 flex-1"}>
                 <div className={"focus:outline-none"}>
                     <div className={"flex justify-between items-center mb-1"}>
@@ -88,7 +90,7 @@ const ConversationBox: React.FC<Props> = ({data, selected}) => {
                         )}
                     </div>
                     <p className={cn("truncate text-sm",
-                        hasSeen ? "text-gray-500": "text-black font-medium"
+                        hasSeen ? "text-gray-500 font-medium": "text-black"
                         )}>
                         {lastMessageText}
                     </p>

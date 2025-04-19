@@ -9,7 +9,7 @@ type Props = {
 const Avatar: React.FC<Props> = ({user}) => {
 
     return (
-        <div className={"relative"}>
+        <div className={"relative inline-block"}>
             <div className={`
                 relative
                 inline-block
