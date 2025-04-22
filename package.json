@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "dev:db-generate": "prisma generate && dotenv -e .env.local -- prisma db push",
-    "db-generate": "prisma generate && prisma db push",
+    "db-generate": "dotenv -e .env.production -- prisma db push",
     "studio": " dotenv -e .env.local -- prisma studio"
   },
   "dependencies": {

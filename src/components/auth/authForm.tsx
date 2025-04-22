@@ -54,7 +54,7 @@ const AuthForm: React.FC = () => {
                     <AuthSocialButton icon={BsGithub} onClick={() => socialAction("github")}/>
                     <AuthSocialButton icon={BsGoogle} onClick={() => socialAction("google")}/>
                 </div>
-                <div className={"text-sm flex justify-center gap-2 mt-6 text-gray-500"}>
+                <div className={"text-sm flex justify-center gap-2 mt-6 text-gray-500 cursor-pointer"}>
                         <span>
                             {variant === "LOGIN" ? "New to messenger?" : "Aready have an account?"}
                         </span>
