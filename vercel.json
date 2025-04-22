@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "buildCommand": "npm install @tailwindcss/oxide-linux-x64-gnu @tailwindcss/oxide-linux-x64-musl && npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_VERCEL_URL": "${VERCEL_URL}"
+  },
+  "regions": ["iad1"],
+  "github": {
+    "silent": true
+  }
+}
