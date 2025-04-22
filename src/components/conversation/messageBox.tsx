@@ -12,7 +12,6 @@ type Props = {
     isLast?: boolean;
 };
 
-
 const MessageBox: React.FC<Props> = ({data, isLast}) => {
     const session = useSession()
     const [imageModelOpen, setImageModelOpen] = useState(false)
@@ -22,6 +21,7 @@ const MessageBox: React.FC<Props> = ({data, isLast}) => {
         .map(user => user.name)
         .join(", ")
 
+    console.log("isOwn", data.sender);
 
     return (
         <div className={cn("flex gap-3 p-4", isOwn && "justify-end")}>

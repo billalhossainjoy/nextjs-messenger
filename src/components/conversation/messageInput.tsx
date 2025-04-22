@@ -12,7 +12,7 @@ const MessageInput: React.FC = () => {
 
     const {register, handleSubmit, setValue} = useForm<FieldValues>({
         defaultValues: {
-            message: ""
+            message: "",
         }
     })
 

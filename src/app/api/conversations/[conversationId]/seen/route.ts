@@ -1,6 +1,8 @@
 import {NextRequest, NextResponse} from "next/server";
 import {getCurrentUser} from "@/app/actions";
 import {prisma} from "@/lib/prisma";
+import {Trigger} from "@radix-ui/react-select";
+import {pusherServer} from "@/pusher";
 
 interface Params {
     conversationId: string;
@@ -55,6 +57,17 @@ export async function POST(req: NextRequest, {params} : { params: Promise<Params
                 seen: true
             }
         })
+
+        await pusherServer.trigger(currentUser.email, "conversation:update", {
+            id: conversationId,
+            messages: [updatedMessages]
+        })
+
+        if(lastMessage.seenIds.indexOf(currentUser.id) !== -1) {
+            return NextResponse.json(conversation)
+        }
+
+        await pusherServer.trigger(conversationId!, "message:update", updatedMessages)
 
         return NextResponse.json(updatedMessages)
     } catch (err: unknown) {

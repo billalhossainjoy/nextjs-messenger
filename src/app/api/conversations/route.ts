@@ -1,6 +1,7 @@
 import {NextRequest, NextResponse} from "next/server";
 import {getCurrentUser} from "@/app/actions";
 import {prisma} from "@/lib/prisma";
+import {pusherServer} from "@/pusher";
 
 export const dynamic = "force-dynamic"
 
@@ -34,8 +35,16 @@ export async function POST(req: NextRequest) {
                 }
             })
 
+            newConversation.users.forEach(user => {
+                if(user.email) {
+                    pusherServer.trigger(user.email, "conversation:new", newConversation)
+                }
+            })
+
             return NextResponse.json(newConversation)
         }
+
+
 
         const existingConversations = await prisma.conversation.findMany({
             where: {
@@ -75,6 +84,12 @@ export async function POST(req: NextRequest) {
             },
             include: {
                 users: true
+            }
+        })
+
+        newConversation.users.forEach(user => {
+            if(user.email) {
+                pusherServer.trigger(user.email, "conversation:new", newConversation)
             }
         })
 

@@ -20,10 +20,9 @@ const ConversationBody: React.FC<Props> = ({initialMessages}) => {
         axios.post(`/api/conversations/${conversationId}/seen`)
     }, [conversationId]);
 
-
     useEffect(() => {
         pusherClient.subscribe(conversationId);
-
+        bootomRef?.current?.scrollIntoView();
 
         const messageHndler = (message: FullMessageType) => {
             axios.post(`/api/conversations/${conversationId}/seen`)
@@ -32,17 +31,27 @@ const ConversationBody: React.FC<Props> = ({initialMessages}) => {
                 if(find(current, {id: message.id})) {
                     return current
                 }
-
                 return [...current, message]
             })
+            bootomRef?.current?.scrollIntoView();
 
         }
 
+        const udpateMessageHandler = (newMessage: FullMessageType) => {
+            setMessages(prev => prev.map(currenMessage => {
+                if(currenMessage.id === newMessage.id) {
+                    return newMessage;
+                }
+                return currenMessage;
+            }));
+        }
+
         pusherClient.bind("messages:new", messageHndler)
+        pusherClient.bind("message:update", udpateMessageHandler)
 
         return () => {
-            pusherClient.unsubscribe(conversationId)
             pusherClient.unbind("messages:new", messageHndler)
+            pusherClient.unsubscribe(conversationId)
         }
 
     }, [conversationId]);

@@ -42,6 +42,7 @@ export const getMessages = async (conversationId: string) => {
             }
         })
 
+
         return messages;
     } catch (err: unknown) {
         console.log(err)

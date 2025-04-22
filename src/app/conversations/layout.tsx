@@ -7,6 +7,7 @@ import {getUsers} from "@/app/users/actions";
 type Props = {
     children: React.ReactNode
 };
+
 const Layout: React.FC<Props> =async ({children}) => {
     const conversations = await getConversation()
     const users = await getUsers()

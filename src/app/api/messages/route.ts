@@ -35,7 +35,8 @@ export async function POST(req: NextRequest) {
                     }
                 },
                 include: {
-                    seen: true
+                    seen: true,
+                    sender: true
                 }
             })
 
@@ -60,6 +61,7 @@ export async function POST(req: NextRequest) {
                     }
                 }
             })
+
 
             await pusherServer.trigger(conversationId, "messages:new", newMessage)
 
