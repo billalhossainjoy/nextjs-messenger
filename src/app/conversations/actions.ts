@@ -1,3 +1,5 @@
+"use server"
+
 import {getCurrentUser} from "@/app/actions";
 import {prisma} from "@/lib/prisma";
 
