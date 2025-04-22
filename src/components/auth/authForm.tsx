@@ -14,11 +14,11 @@ type Variant = "LOGIN" | "REGISTER"
 const AuthForm: React.FC = () => {
     const session = useSession()
     const router = useRouter()
-    const [isLoading, setIsLoading] = useState(false)
+    const [_isLoading, setIsLoading] = useState(false)
     const [variant, setVariant] = useState<Variant>("LOGIN")
 
 
-    const toggleVariant = useCallback(() => setVariant(prev => prev === "LOGIN" ? "REGISTER" : "LOGIN"), [variant]);
+    const toggleVariant = useCallback(() => setVariant(prev => prev === "LOGIN" ? "REGISTER" : "LOGIN"), []);
 
     const socialAction = (action: BuiltInProviderType) => {
         setIsLoading(true)
@@ -34,7 +34,7 @@ const AuthForm: React.FC = () => {
         if(session?.status === "authenticated"){
             router.push("/users")
         }
-    }, [session?.status]);
+    }, [session?.status, router]);
 
     return (<div className={"mt-8 sm:mx-auto sm:w-full sm:max-w-md"}>
         <div className={"bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10"}>

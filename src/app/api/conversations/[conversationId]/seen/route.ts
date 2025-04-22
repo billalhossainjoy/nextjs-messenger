@@ -6,10 +6,10 @@ interface Params {
     conversationId: string;
 }
 
-export async function POST(req: NextRequest, {params} : { params: Params }) {
+export async function POST(req: NextRequest, {params} : { params: Promise<Params> }) {
     try {
         const currentUser = await getCurrentUser()
-        const {conversationId} = params
+        const {conversationId} = await params
 
         if(!currentUser?.id || !currentUser?.email) {
             return new NextResponse("unauthorized", {status: 401})
@@ -60,7 +60,5 @@ export async function POST(req: NextRequest, {params} : { params: Params }) {
     } catch (err: unknown) {
         console.log(err, "error_messages_seen")
         return new NextResponse("Internal error", {status: 500})
-
     }
-    
 }

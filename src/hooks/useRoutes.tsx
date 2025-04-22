@@ -27,7 +27,7 @@ const useRoutes = () => {
             icon: HiArrowLeftOnRectangle,
             onClick: () => signOut()
         },
-    ], [pathname])
+    ], [pathname, conversationId])
 }
 
 export default useRoutes

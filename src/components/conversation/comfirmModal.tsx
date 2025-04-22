@@ -20,13 +20,13 @@ const ComfirmModal: React.FC<Props> = ({isOpen, onClose}) => {
     const onDelete = useCallback(() => {
         setIsLoading(true)
         axios.delete(`/api/conversations/${conversationId}`)
-            .then(res => {
+            .then(() => {
                 router.push("/conversations")
                 router.refresh()
             })
             .catch(() => toast.error("Something went wrong!"))
             .finally(() => setIsLoading(false))
-    }, [])
+    }, [router,conversationId])
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className={"sm:flex sm:items-start py-2"}>

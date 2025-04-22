@@ -2,13 +2,9 @@ import {NextRequest, NextResponse} from "next/server";
 import {getCurrentUser} from "@/app/actions";
 import {prisma} from "@/lib/prisma";
 
-interface IParams {
-    conversationId: string;
-}
-
-export async function DELETE(req: NextRequest, {params} : {params: IParams})  {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ conversationId: string }> })  {
     try {
-        const {conversationId} = params
+        const {conversationId} =await params
         const currentUser = await getCurrentUser();
 
         if(!currentUser) {

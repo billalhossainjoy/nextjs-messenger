@@ -5,7 +5,6 @@ import {format} from "date-fns";
 import {Dialog, DialogPanel, Transition, TransitionChild,} from "@headlessui/react";
 import {IoClose, IoTrash} from "react-icons/io5";
 import Avatar from "@/components/avatar";
-import ConverstaionModal from "@/components/conversation/converstaionModal";
 import ComfirmModal from "@/components/conversation/comfirmModal";
 import AvatarGroup from "@/components/avatarGroup";
 
@@ -19,7 +18,7 @@ const ProfileDrawer: React.FC<Props> = ({data, isOpen, onClose}) => {
 
     const joinedDate = useMemo(() => {
         return format(new Date(), "PP")
-    }, [otherUser.createdAt])
+    }, [])
 
     const title = useMemo(() => {
         return data.name || otherUser.name;
@@ -118,7 +117,7 @@ const ProfileDrawer: React.FC<Props> = ({data, isOpen, onClose}) => {
                                                                 </dt>
                                                                 <dd>
                                                                     {
-                                                                        data.users.map(user => <p>
+                                                                        data.users.map(user => <p key={user.id}>
                                                                             {user.name}
                                                                         </p>)
                                                                     }

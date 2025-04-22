@@ -3,7 +3,6 @@ import Sidebar from "@/components/sidebar/sidebar";
 import ConversationList from "@/components/conversation/conversationList";
 import {getConversation} from "@/app/conversations/actions";
 import {getUsers} from "@/app/users/actions";
-import {getCurrentUser} from "@/app/actions";
 
 type Props = {
     children: React.ReactNode

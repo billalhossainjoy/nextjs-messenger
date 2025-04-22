@@ -8,7 +8,7 @@ interface Params {
     conversationId: string;
 }
 
-const Page = async ({params}: {params: Params}) => {
+const Page = async ({params}: {params: Promise<Params>}) => {
     const {conversationId} =await params
 
     const conversation = await getConversationById(conversationId)

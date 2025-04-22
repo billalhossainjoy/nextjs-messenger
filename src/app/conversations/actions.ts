@@ -29,7 +29,8 @@ export const getConversation = async () => {
         })
 
         return conversations;
-    } catch (err: unknown) {
+    } catch (err) {
+        console.log(err);
         return []
     }
 }

@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         }
 
         if(isGroup) {
-            const newConversatin = await prisma.conversation.create({
+            const newConversation = await prisma.conversation.create({
                 data: {
                     name,
                     isGroup,
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
                 }
             })
 
-            return NextResponse.json(newConversatin)
+            return NextResponse.json(newConversation)
         }
 
         const existingConversations = await prisma.conversation.findMany({
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json(newConversation)
     } catch (err: unknown) {
-
+        console.log(err)
     }
 
 }

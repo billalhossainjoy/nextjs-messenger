@@ -16,9 +16,9 @@ type Props = {
 };
 
 const ConversationList: React.FC<Props> = ({initialItems, users}) => {
-    const [items, setItems] = useState(initialItems);
+    const [items, _setItems] = useState(initialItems);
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const router = useRouter()
+    const _router = useRouter()
     const {conversationId, isOpen} = useConversation()
     return (
        <>

@@ -5,12 +5,12 @@ import useConversation from "@/hooks/useConversation";
 import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import axios from "axios";
 import {HiPaperAirplane, HiPhoto} from "react-icons/hi2";
-import {CldUploadButton, type CloudinaryUploadWidgetResults} from "next-cloudinary";
+import {CldUploadButton} from "next-cloudinary";
 
 const MessageInput: React.FC = () => {
     const {conversationId} = useConversation()
 
-    const {register, handleSubmit, setValue, formState: {errors}} = useForm<FieldValues>({
+    const {register, handleSubmit, setValue} = useForm<FieldValues>({
         defaultValues: {
             message: ""
         }

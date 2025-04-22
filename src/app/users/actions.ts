@@ -25,6 +25,7 @@ export async function getUsers() {
 
         return users
     }catch(err: unknown){
+        console.log(err)
         return []
     }
 }

@@ -12,7 +12,7 @@ const useOtherUser = (conversation: Conversation & {users: User[]})=> {
 
         return conversation.users.filter(user => user.email !== currentUserEmail)
 
-    }, [session?.data?.user?.email]);
+    }, [session?.data?.user?.email, conversation.users]);
 
     return otherUser[0]
 }

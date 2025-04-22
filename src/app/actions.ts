@@ -29,6 +29,7 @@ export async function getCurrentUser() {
 
         return currentUser;
     }catch (err) {
+        console.log(err)
         return null
     }
 }

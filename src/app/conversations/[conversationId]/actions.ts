@@ -22,6 +22,7 @@ export const getConversationById = async (conversationId: string) => {
 
         return conversation;
     } catch (err: unknown) {
+        console.log(err)
         return null
     }
 }
@@ -43,6 +44,7 @@ export const getMessages = async (conversationId: string) => {
 
         return messages;
     } catch (err: unknown) {
+        console.log(err)
         return []
     }
 }
