@@ -7,6 +7,7 @@ import {IoClose, IoTrash} from "react-icons/io5";
 import Avatar from "@/components/avatar";
 import ComfirmModal from "@/components/conversation/comfirmModal";
 import AvatarGroup from "@/components/avatarGroup";
+import useActiveList from "@/hooks/useActiveList";
 
 type Props = {
     data: Conversation & { users: User[] }; isOpen: boolean; onClose: () => void;
@@ -24,13 +25,16 @@ const ProfileDrawer: React.FC<Props> = ({data, isOpen, onClose}) => {
         return data.name || otherUser.name;
     }, [data.name, otherUser.name])
 
+    const {members} = useActiveList()
+    const isActive = otherUser.email && members.indexOf(otherUser.email) !== -1;
+
     const statusText = useMemo(() => {
         if (data.isGroup) {
             return `${data.users.length} members`
         }
 
-        return "Active"
-    }, [data])
+        return isActive ? "Active" : "Offline"
+    }, [data, isActive])
 
 
     return (<>

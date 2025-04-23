@@ -29,7 +29,7 @@ const GroupChatModal: React.FC<Props> = ({isOpen, onClose, users}) => {
     const members = watch("members")
 
     const onSubmit: SubmitHandler<FieldValues> = (data ) => {
-        console.log(data)
+
         setIsLoading(true)
         axios.post("/api/conversations", {
             ...data,

@@ -8,7 +8,6 @@ interface Props {
 
  async function UsersLayout({children}: Props) {
     const users = await getUsers()
-    console.log(users)
     return (
         <Sidebar>
             <div className={"h-full "}>

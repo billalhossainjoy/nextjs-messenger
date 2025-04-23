@@ -3,6 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import ToasterContext from "@/constext/toasterContext";
 import AuthContext from "@/context/authContext";
+import ActiveStatus from "@/components/activeStatus";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${robotoMono.variable} antialiased h-screen`}
       >
+      <ActiveStatus />
         <AuthContext>
             {children}
         </AuthContext>

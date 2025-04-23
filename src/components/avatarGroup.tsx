@@ -14,7 +14,6 @@ const AvatarGroup: React.FC<Props> = ({users}) => {
         1: "bottom-0 ",
         2: "bottom-0 right-0"
     }
-    console.log(slicedUsers)
 
     return (
         <div

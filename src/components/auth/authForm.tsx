@@ -56,7 +56,7 @@ const AuthForm: React.FC = () => {
                 </div>
                 <div className={"text-sm flex justify-center gap-2 mt-6 text-gray-500 cursor-pointer"}>
                         <span>
-                            {variant === "LOGIN" ? "New to messenger?" : "Aready have an account?"}
+                            {variant === "LOGIN" ? "New to messenger?" : "Already have an account?"}
                         </span>
                     <span onClick={() => toggleVariant()}>
                             {variant === "LOGIN" ? "Create an account?" : "login your account?"}

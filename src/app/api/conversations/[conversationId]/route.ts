@@ -3,7 +3,7 @@ import {getCurrentUser} from "@/app/actions";
 import {prisma} from "@/lib/prisma";
 import {pusherServer} from "@/pusher";
 
-export async function DELETE(req: NextRequest, { params }: { params: Promise<{ conversationId: string }> })  {
+export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ conversationId: string }> })  {
     try {
         const {conversationId} =await params
         const currentUser = await getCurrentUser();

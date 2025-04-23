@@ -1,14 +1,13 @@
 import {NextRequest, NextResponse} from "next/server";
 import {getCurrentUser} from "@/app/actions";
 import {prisma} from "@/lib/prisma";
-import {Trigger} from "@radix-ui/react-select";
 import {pusherServer} from "@/pusher";
 
 interface Params {
     conversationId: string;
 }
 
-export async function POST(req: NextRequest, {params} : { params: Promise<Params> }) {
+export async function POST(_req: NextRequest, {params} : { params: Promise<Params> }) {
     try {
         const currentUser = await getCurrentUser()
         const {conversationId} = await params

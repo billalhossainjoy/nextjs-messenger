@@ -33,9 +33,34 @@ export const authOption: AuthOptions = {
 
             return user;
         },
-    }),], debug: process.env.NODE_ENV === "development", session: {
+    }),
+    ],
+    pages: {
+        error: "/"
+    },
+    // callbacks: {
+    //     async jwt({ token, user }) {
+    //         if (user) {
+    //             token.id = user.id;
+    //             token.email = user.email;
+    //             token.name = user.name;
+    //             token.picture = user.image;
+    //         }
+    //         return token;
+    //     },
+    //     async session({ session, token }) {
+    //         session?.user?.id = token.id;
+    //         session?.user?.name = token.name;
+    //         session.user.email = token.email;
+    //         session.user.image = token.picture;
+    //         return session;
+    //     },
+    // },
+    debug: process.env.NODE_ENV === "development",
+    session: {
         strategy: "jwt",
-    }, secret: process.env.NEXT_AUTH_SECRET
+    },
+    secret: process.env.NEXT_AUTH_SECRET
 }
 
 export default NextAuth(authOption);
