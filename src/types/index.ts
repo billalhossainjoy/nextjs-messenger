@@ -10,11 +10,3 @@ export type FullConversationType = Conversation & {
     users: User[],
     messages: FullMessageType[]
 }
-//
-//
-// declare module "next-auth" {
-//     interface Session {
-//         user: any
-//     }
-//
-// }

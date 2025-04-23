@@ -1,15 +1,28 @@
 import {PrismaAdapter} from "@auth/prisma-adapter";
 import {prisma} from "@/lib/prisma";
 import GoogleProvider from "next-auth/providers/google";
-import {GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET,} from "@/config/env.config";
+import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
+import {
+    FACEBOOK_CLIENT_ID,
+    FACEBOOK_CLIENT_SECRET,
+    GITHUB_CLIENT_ID,
+    GITHUB_CLIENT_SECRET,
+    GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET,
+} from "@/config/env.config";
 import CredentialsProvider from "next-auth/providers/credentials";
 import {loginSchema} from "@/schema/auth.schema";
 import bcrypt from "bcryptjs";
 import NextAuth, {AuthOptions} from "next-auth";
 
 export const authOption: AuthOptions = {
-    adapter: PrismaAdapter(prisma), providers: [GoogleProvider({
+    adapter: PrismaAdapter(prisma), providers: [
+        FacebookProvider({
+            clientId: FACEBOOK_CLIENT_ID,
+            clientSecret: FACEBOOK_CLIENT_SECRET,
+        }),
+        GoogleProvider({
         clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET,
     }), GithubProvider({
         clientId: GITHUB_CLIENT_ID, clientSecret: GITHUB_CLIENT_SECRET,
@@ -33,34 +46,20 @@ export const authOption: AuthOptions = {
 
             return user;
         },
-    }),
-    ],
-    pages: {
-        error: "/"
-    },
-    // callbacks: {
-    //     async jwt({ token, user }) {
-    //         if (user) {
-    //             token.id = user.id;
-    //             token.email = user.email;
-    //             token.name = user.name;
-    //             token.picture = user.image;
+    }),], // callbacks: {
+    //     async signIn({user, account, profile}){
+    //         if(account?.provider === "google"){
+    //             const existingUser = await prisma.user.findUnique({
+    //                 where: {email: profile?.email}
+    //             })
     //         }
-    //         return token;
-    //     },
-    //     async session({ session, token }) {
-    //         session?.user?.id = token.id;
-    //         session?.user?.name = token.name;
-    //         session.user.email = token.email;
-    //         session.user.image = token.picture;
-    //         return session;
-    //     },
+    //
+    //         return true
+    //     }
     // },
-    debug: process.env.NODE_ENV === "development",
-    session: {
+    debug: process.env.NODE_ENV === "development", session: {
         strategy: "jwt",
-    },
-    secret: process.env.NEXT_AUTH_SECRET
+    }, secret: process.env.NEXT_AUTH_SECRET
 }
 
 export default NextAuth(authOption);

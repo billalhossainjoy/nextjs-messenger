@@ -1,16 +1,20 @@
-import { withAuth } from "next-auth/middleware";
-import {NEXT_AUTH_SECRET} from "@/config/env.config";
+// middleware.ts
+import { withAuth } from "next-auth/middleware"
+import { NextResponse } from "next/server"
 
-export default withAuth({
-    secret: NEXT_AUTH_SECRET,
-    pages: {
-        signIn: '/',
-    },
-});
+export default withAuth(
+    {
+        secret: process.env.NEXT_AUTH_SECRET,
+        pages: {
+            signIn: "/",
+            signOut: "/"
+        },
+    }
+)
 
 export const config = {
     matcher: [
         '/users/:path*',
         '/conversations/:path*'
     ],
-};
+}

@@ -1,7 +1,7 @@
 "use client"
 import React, {useCallback, useEffect, useState} from 'react';
 import AuthSocialButton from "@/components/auth/authSocialButton";
-import {BsGithub, BsGoogle} from "react-icons/bs";
+import {BsFacebook, BsGithub, BsGoogle} from "react-icons/bs";
 import LoginForm from "@/components/auth/loginForm";
 import SignUpForm from "@/components/auth/signUpForm";
 import {signIn, useSession} from "next-auth/react"
@@ -51,7 +51,7 @@ const AuthForm: React.FC = () => {
                 </div>
 
                 <div className={"mt-6 flex gap-2"}>
-                    <AuthSocialButton icon={BsGithub} onClick={() => socialAction("github")}/>
+                    <AuthSocialButton icon={BsFacebook} onClick={() => socialAction("facebook")}/>
                     <AuthSocialButton icon={BsGoogle} onClick={() => socialAction("google")}/>
                 </div>
                 <div className={"text-sm flex justify-center gap-2 mt-6 text-gray-500 cursor-pointer"}>
